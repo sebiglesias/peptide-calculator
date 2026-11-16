@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="url(#grad)"/>
+  <!-- Syringe outline -->
+  <path d="M44 12 L52 20 L48 24 L46 22 L36 32 L34 30 L38 26 L36 24 L24 36 L28 40 L16 52 L12 48 L24 36" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Plunger & Needle -->
+  <line x1="16" y1="52" x2="8" y2="60" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="6" y1="58" x2="10" y2="62" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- Tick marks -->
+  <line x1="28" y1="32" x2="31" y2="35" stroke="#ffffff" stroke-width="1.8"/>
+  <line x1="32" y1="28" x2="35" y2="31" stroke="#ffffff" stroke-width="1.8"/>
+</svg>

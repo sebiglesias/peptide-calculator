@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Peptide Reconstitution & Syringe Calculator — Evidence-Based GLP-1 & Research Dosing</title>
+  <meta name="description" content="Calculate exact syringe units, BAC water reconstitution volume, and mg/mcg doses for Semaglutide, Tirzepatide, Retatrutide, and BPC-157 with an interactive visual syringe simulator backed by PubMed clinical studies.">
+  <link rel="canonical" href="https://sebiglesias.com.ar/peptide-calculator/">
+  <meta name="theme-color" content="#06b6d4">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Peptide Reconstitution & Syringe Calculator — Evidence-Based GLP-1 & Research Dosing">
+  <meta property="og:description" content="Calculate exact syringe units, BAC water reconstitution volume, and mg/mcg doses with a visual syringe simulator and peer-reviewed PubMed citations.">
+  <meta property="og:url" content="https://sebiglesias.com.ar/peptide-calculator/">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.json">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2BNDBQP0W7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-2BNDBQP0W7');
+  </script>
+
+  <!-- Google AdSense -->
+  <meta name="google-adsense-account" content="ca-pub-3381238987477190">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3381238987477190" crossorigin="anonymous"></script>
+
+  <!-- JSON-LD Schema -->
+  <script type="application/ld+json">
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Peptide Reconstitution & Syringe Dosage Calculator",
+      "url": "https://sebiglesias.com.ar/peptide-calculator/",
+      "applicationCategory": "HealthApplication",
+      "operatingSystem": "Any",
+      "description": "Evidence-based peptide reconstitution and dosage calculator with visual syringe tick marks, diluent volume, and clinical trial titration benchmarks.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How do you calculate syringe units for reconstituted peptides?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "First calculate the concentration: divide the vial mg by the milliliters (mL) of Bacteriostatic Water added. Then divide your target dose (in mg) by this concentration to find the mL needed. On a standard U-100 insulin syringe (where 100 units = 1.0 mL), multiply the mL needed by 100 to get the exact unit mark on the syringe."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why is Bacteriostatic Water (0.9% Benzyl Alcohol) preferred over sterile saline?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Bacteriostatic Water contains 0.9% benzyl alcohol as an antimicrobial preservative. According to USP <797> compounding standards, multi-dose vials reconstituted with bacteriostatic water inhibit bacterial growth for up to 28-56 days when refrigerated at 2°C to 8°C, whereas unpreserved sterile water must be discarded within 24 hours of opening."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between U-100, U-50, and U-30 insulin syringes?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "All standard U-100 calibration insulin syringes share the exact same scale: 1 unit equals 0.01 mL. The difference is overall capacity: a U-100 syringe holds 1.0 mL (100 units), a U-50 syringe holds 0.5 mL (50 units), and a U-30 syringe holds 0.3 mL (30 units). Smaller syringes provide wider spacing between tick marks, making micro-dosing (e.g. 5 to 15 units) significantly more accurate."
+          }
+        }
+      ]
+    }
+  ]
+  </script>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="badge">🔬 Evidence-Based Clinical Protocols</div>
+      <h1>Peptide Reconstitution & Syringe Calculator</h1>
+      <p class="subtitle">Calculate exact syringe units, Bacteriostatic Water volume, and concentration benchmarks backed by peer-reviewed PubMed clinical trials (NEJM, The Lancet, JAMA).</p>
+      
+      <div class="presets-bar">
+        <button class="preset-btn active" data-preset="semaglutide">Semaglutide (STEP-1)</button>
+        <button class="preset-btn" data-preset="tirzepatide">Tirzepatide (SURMOUNT-1)</button>
+        <button class="preset-btn" data-preset="retatrutide">Retatrutide (Phase 2)</button>
+        <button class="preset-btn" data-preset="bpc-157">BPC-157 (Gastric Peptide)</button>
+      </div>
+    </header>
+
+    <!-- Medical Disclaimer -->
+    <div class="medical-alert">
+      <strong>⚠️ Medical Research & Educational Disclaimer:</strong> This calculator is strictly for educational, research, and informational mathematical validation. It does not provide medical advice or prescribe treatments. Dosing protocols must be determined by a licensed medical physician in compliance with FDA and local health regulations.
+    </div>
+
+    <!-- AdSense Top Banner -->
+    <div style="text-align:center; margin: 16px 0;">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-3381238987477190"
+           data-ad-slot="auto"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+    <!-- Main Grid -->
+    <div class="calc-grid">
+      <!-- Inputs Card -->
+      <div class="card">
+        <h2>⚙️ Reconstitution Parameters</h2>
+
+        <div class="form-group">
+          <label for="vialMg">
+            Total Peptide in Vial
+            <span class="hint">Amount printed on vial label</span>
+          </label>
+          <div class="input-wrap">
+            <input type="number" id="vialMg" step="0.5" min="0.1" value="5">
+            <span class="input-suffix">mg</span>
+          </div>
+          <div class="quick-pills">
+            <button class="pill-btn" data-target="vialMg" data-val="2">2 mg</button>
+            <button class="pill-btn" data-target="vialMg" data-val="5">5 mg</button>
+            <button class="pill-btn" data-target="vialMg" data-val="10">10 mg</button>
+            <button class="pill-btn" data-target="vialMg" data-val="15">15 mg</button>
+            <button class="pill-btn" data-target="vialMg" data-val="30">30 mg</button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="bacWaterMl">
+            Bacteriostatic Water Added
+            <span class="hint">USP 0.9% Benzyl Alcohol</span>
+          </label>
+          <div class="input-wrap">
+            <input type="number" id="bacWaterMl" step="0.5" min="0.5" value="2">
+            <span class="input-suffix">mL</span>
+          </div>
+          <div class="quick-pills">
+            <button class="pill-btn" data-target="bacWaterMl" data-val="1">1.0 mL</button>
+            <button class="pill-btn" data-target="bacWaterMl" data-val="2">2.0 mL</button>
+            <button class="pill-btn" data-target="bacWaterMl" data-val="2.5">2.5 mL</button>
+            <button class="pill-btn" data-target="bacWaterMl" data-val="3">3.0 mL</button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="doseVal">
+            Desired Dose
+            <span class="hint" id="protocolNotes">Starting dose protocol</span>
+          </label>
+          <div style="display:flex; gap:8px;">
+            <div class="input-wrap" style="flex:1;">
+              <input type="number" id="doseVal" step="0.05" min="0.01" value="0.25">
+            </div>
+            <select id="doseUnit" style="width: 100px;">
+              <option value="mg" selected>mg</option>
+              <option value="mcg">mcg</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="syringeType">
+            Syringe Calibration
+            <span class="hint">Standard U-100 (0.01 mL/unit)</span>
+          </label>
+          <select id="syringeType">
+            <option value="100" selected>1.0 mL Syringe (100 Units)</option>
+            <option value="50">0.5 mL Syringe (50 Units)</option>
+            <option value="30">0.3 mL Syringe (30 Units)</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Results & Syringe Card -->
+      <div class="card">
+        <h2>🎯 Syringe Measurement</h2>
+
+        <div class="result-hero">
+          <div class="result-label">Pull Plunger To Exactly</div>
+          <div class="result-number" id="unitsResult">10.0</div>
+          <div class="result-label" style="color:#ffffff;">Units on Syringe</div>
+        </div>
+
+        <div id="syringeWarning" style="display:none; color:#f87171; font-size:0.82rem; margin-bottom:10px;"></div>
+
+        <div class="syringe-box">
+          <div style="font-size:0.8rem; color:var(--text-muted); margin-bottom:4px;">Interactive Syringe Visualizer</div>
+          <svg id="syringeSvg" viewBox="0 0 500 90"></svg>
+        </div>
+
+        <div class="result-stat-grid">
+          <div class="stat-item">
+            <div class="stat-desc">Vial Concentration</div>
+            <div class="stat-val" id="concResult">2.50 mg/mL</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-desc">Liquid Volume</div>
+            <div class="stat-val" id="volumeResult">0.100 mL</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-desc">Doses per Vial</div>
+            <div class="stat-val" id="dosesResult">20.0 doses</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-desc">Storage Temp</div>
+            <div class="stat-val" style="color:#38bdf8;">36°F – 46°F (2°C–8°C)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Amazon Supplies Box (Affiliate Tag sebiglesias-20) -->
+    <div class="supplies-card">
+      <h3>🧴 Sterile Reconstitution Insumos & Lab Supplies</h3>
+      <div class="supplies-grid">
+        <div class="supply-item">
+          <div>
+            <div class="supply-title">Bacteriostatic Water 30mL</div>
+            <div class="supply-desc">Preserved sterile solvent with 0.9% benzyl alcohol for multi-dose reconstitutions.</div>
+          </div>
+          <a href="https://www.amazon.com/s?k=bacteriostatic+water+sterile&tag=sebiglesias-20" target="_blank" rel="nofollow noopener" class="btn-amazon">Check on Amazon →</a>
+        </div>
+        <div class="supply-item">
+          <div>
+            <div class="supply-title">U-100 Syringes 31G 5/16"</div>
+            <div class="supply-desc">Ultra-fine 100-unit insulin micro-syringes with clear 1-unit graduations.</div>
+          </div>
+          <a href="https://www.amazon.com/s?k=insulin+syringes+100+unit+31g&tag=sebiglesias-20" target="_blank" rel="nofollow noopener" class="btn-amazon">Check on Amazon →</a>
+        </div>
+        <div class="supply-item">
+          <div>
+            <div class="supply-title">Alcohol Prep Pads (70% IPA)</div>
+            <div class="supply-desc">Sterile 2-ply isopropyl alcohol wipes for vial rubber stoppers and skin prep.</div>
+          </div>
+          <a href="https://www.amazon.com/s?k=alcohol+prep+pads+sterile&tag=sebiglesias-20" target="_blank" rel="nofollow noopener" class="btn-amazon">Check on Amazon →</a>
+        </div>
+        <div class="supply-item">
+          <div>
+            <div class="supply-title">Sharps Disposal Container</div>
+            <div class="supply-desc">FDA-cleared biohazard container for safe needle and syringe disposal.</div>
+          </div>
+          <a href="https://www.amazon.com/s?k=sharps+disposal+container&tag=sebiglesias-20" target="_blank" rel="nofollow noopener" class="btn-amazon">Check on Amazon →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Clinical Evidence and Studies Section -->
+    <section class="evidence-section">
+      <div id="studiesContainer">
+        <!-- Rendered by app.js from medical_citations.json -->
+      </div>
+    </section>
+
+    <!-- FAQ Section for SEO -->
+    <section class="faq-section">
+      <h2 style="font-size:1.4rem; color:#ffffff; margin-bottom:16px;">Frequently Asked Questions (FAQ)</h2>
+      
+      <div class="faq-item">
+        <div class="faq-q">How do I calculate syringe units for peptide reconstitution?</div>
+        <div class="faq-a">To find the exact unit mark: divide your vial's total milligrams (e.g. 5 mg) by the volume of Bacteriostatic Water added in milliliters (e.g. 2 mL) to find concentration (2.5 mg/mL). Then divide your desired dose (e.g. 0.25 mg) by 2.5 mg/mL to find the volume needed (0.1 mL). On a standard U-100 syringe (where 100 units = 1.0 mL), 0.1 mL corresponds to exactly 10 units.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Why is Bacteriostatic Water required instead of plain sterile water?</div>
+        <div class="faq-a">Bacteriostatic Water contains 0.9% benzyl alcohol, an effective antimicrobial preservative. Under United States Pharmacopeia (USP) guidelines, multi-dose vials reconstituted with bacteriostatic water can be stored refrigerated (2°C–8°C) for up to 28–56 days. Sterile water lacks preservative and must be used immediately or discarded within 24 hours due to bacterial contamination risks.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">What is the titration schedule for Semaglutide and Tirzepatide in clinical trials?</div>
+        <div class="faq-a">According to the STEP-1 trial (NEJM 2021) and FDA product labeling, Semaglutide begins at 0.25 mg once weekly for 4 weeks, titrating monthly to 0.5 mg, 1.0 mg, 1.7 mg, and 2.4 mg. For Tirzepatide (SURMOUNT-1, NEJM 2022), patients start at 2.5 mg weekly for 4 weeks, then escalate in 2.5 mg increments every 4 weeks to 5.0 mg, 7.5 mg, 10.0 mg, 12.5 mg, or 15.0 mg.</div>
+      </div>
+    </section>
+
+    <!-- Bottom AdSense Banner -->
+    <div style="text-align:center; margin: 32px 0;">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-3381238987477190"
+           data-ad-slot="auto"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+    <footer>
+      <p>© 2026 <a href="https://sebiglesias.com.ar/">sebiglesias.com.ar</a> · Peptide Reconstitution & Dosage Calculator. Educational and laboratory calculation tool.</p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

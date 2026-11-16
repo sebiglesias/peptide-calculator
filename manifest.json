@@ -1,0 +1,16 @@
+{
+  "name": "Peptide Reconstitution & Dosage Calculator",
+  "short_name": "PeptideCalc",
+  "description": "Calculate exact syringe units, BAC water reconstitution volume, and mg/mcg doses for Semaglutide, Tirzepatide, Retatrutide, and research peptides.",
+  "start_url": "/peptide-calculator/",
+  "display": "standalone",
+  "background_color": "#090d16",
+  "theme_color": "#06b6d4",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "64x64 128x128 256x256",
+      "type": "image/svg+xml"
+    }
+  ]
+}
